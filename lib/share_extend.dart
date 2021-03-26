@@ -3,10 +3,10 @@
 ///
 ///
 /// A open source authorized by zhouteng [https://github.com/zhouteng0217/ShareExtend](https://github.com/zhouteng0217/ShareExtend).
-
 import 'dart:async';
-import 'package:flutter/services.dart';
 import 'dart:ui';
+
+import 'package:flutter/services.dart';
 
 /// Plugin for summoning a platform share sheet.
 class ShareExtend {
@@ -25,11 +25,11 @@ class ShareExtend {
   /// [extraText] only supports android for Intent.EXTRA_TEXT when sharing image or file.
   ///
   static Future<void> shareMultiple(List<String> list, String type,
-      {Rect sharePositionOrigin,
-      String sharePanelTitle,
+      {Rect? sharePositionOrigin,
+      String? sharePanelTitle,
       String subject = "",
       String extraText = ""}) {
-    assert(list != null && list.isNotEmpty);
+    assert(list.isNotEmpty);
     return _shareInner(list, type,
         sharePositionOrigin: sharePositionOrigin,
         subject: subject,
@@ -48,11 +48,10 @@ class ShareExtend {
   /// [extraText] only supports android for Intent.EXTRA_TEXT when sharing image or file.
   ///
   static Future<void> share(String text, String type,
-      {Rect sharePositionOrigin,
-      String sharePanelTitle,
+      {Rect? sharePositionOrigin,
+      String? sharePanelTitle,
       String subject = "",
       String extraText = ""}) {
-    assert(text != null);
     assert(text.isNotEmpty);
     List<String> list = [text];
     return _shareInner(
@@ -66,11 +65,11 @@ class ShareExtend {
   }
 
   static Future<void> _shareInner(List<String> list, String type,
-      {Rect sharePositionOrigin,
-      String sharePanelTitle,
-      String subject,
-      String extraText}) {
-    assert(list != null && list.isNotEmpty);
+      {Rect? sharePositionOrigin,
+      String? sharePanelTitle,
+      String? subject,
+      String? extraText}) {
+    assert(list.isNotEmpty);
     final Map<String, dynamic> params = <String, dynamic>{
       'list': list,
       'type': type,
